@@ -4,9 +4,6 @@ FROM centos:6
 # Set an encoding to make things work smoothly.
 ENV LANG en_US.UTF-8
 
-# Add a timestamp for the build. Also, bust the cache.
-ADD http://tycho.usno.navy.mil/timer.html /opt/docker/etc/timestamp
-
 # Install basic requirements.
 RUN yum update -y && \
     yum install -y \
