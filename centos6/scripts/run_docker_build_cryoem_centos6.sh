@@ -16,9 +16,6 @@ cat << EOF | sudo docker run -i \
                         -a stdin -a stdout -a stderr \
                         cryoem/centos6:latest
 
-conda build /workspace/eman2/recipes/eman -c cryoem -c defaults -c conda-forge
-
-mkdir -p /workspace/centos6 && cd /workspace/centos6
-constructor /workspace/build-scripts/constructor
+bash build_and_package.sh /workspace/eman2 /workspace/centos6 /workspace/build-scripts/constructor
 
 EOF
