@@ -8,6 +8,7 @@ if [ $# -ne 1 ];then
 fi
 
 root_dir=$(cd $1; pwd -P)
+scripts_dir=$(cd $(dirname $0); pwd -P)
 
 sudo docker info
 
@@ -16,6 +17,6 @@ cat << EOF | sudo docker run -i \
                         -a stdin -a stdout -a stderr \
                         cryoem/centos6:latest
 
-bash build_and_package.sh /workspace/eman2 /workspace/centos6 /workspace/build-scripts/constructor
+bash "${scripts_dir}"/build_and_package.sh /workspace/eman2 /workspace/centos6 /workspace/build-scripts/constructor
 
 EOF
