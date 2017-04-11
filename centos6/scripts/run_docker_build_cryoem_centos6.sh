@@ -11,6 +11,9 @@ root_dir=$(cd $1; pwd -P)
 
 docker info
 
+HOST_UID=$(id -u)
+HOST_GID=$(id -g)
+
 cat << EOF | docker run -i \
                         -v "$root_dir":/workspace \
                         -v "$root_dir"/docker_volumes/dot_conda:/root/.conda/ \
@@ -20,5 +23,7 @@ cat << EOF | docker run -i \
                         cryoem/centos6:latest
 
 bash /workspace/docker-images/centos6/scripts/build_and_package.sh /workspace/eman2 /workspace/centos6 /workspace/build-scripts/constructor
+
+chown -v $HOST_GID:$HOST_UID /workspace/centos6/*
 
 EOF
