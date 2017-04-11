@@ -13,6 +13,9 @@ sudo docker info
 
 cat << EOF | sudo docker run -i \
                         -v "$root_dir":/workspace \
+                        -v "$root_dir"/docker_volumes/dot_conda:/root/.conda/ \
+                        -v "$root_dir"/docker_volumes/conda_dir/conda-bld:/root/miniconda2/conda-bld \
+                        -v "$root_dir"/docker_volumes/conda_dir/pkgs:/root/miniconda2/pkgs \
                         -a stdin -a stdout -a stderr \
                         cryoem/centos6:latest
 
