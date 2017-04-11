@@ -16,6 +16,6 @@ cat << EOF | sudo docker run -i \
                         -a stdin -a stdout -a stderr \
                         cryoem/centos6:latest
 
-bash build_and_package.sh /workspace/eman2 /workspace/centos6 /workspace/build-scripts/constructor
+bash /workspace/docker-images/centos6/scripts/build_and_package.sh /workspace/eman2 /workspace/centos6 /workspace/build-scripts/constructor
 
 EOF
