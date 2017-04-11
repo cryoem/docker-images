@@ -25,3 +25,4 @@ temp_dir=temp1
 cp -a ${CONSTRUCT_YAML_DIR} ${temp_dir}
 sed -i.bak "s~\(^.*file://\)\(.*$\)~\1${CONDA_PREFIX}/conda-bld/~" ${temp_dir}/construct.yaml
 constructor ${temp_dir}
+rm -rf ${temp_dir}
