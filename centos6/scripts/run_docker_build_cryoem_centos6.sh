@@ -9,9 +9,9 @@ fi
 
 root_dir=$(cd $1; pwd -P)
 
-sudo docker info
+docker info
 
-cat << EOF | sudo docker run -i \
+cat << EOF | docker run -i \
                         -v "$root_dir":/workspace \
                         -v "$root_dir"/docker_volumes/dot_conda:/root/.conda/ \
                         -v "$root_dir"/docker_volumes/conda_dir/conda-bld:/root/miniconda2/conda-bld \
