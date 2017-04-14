@@ -7,13 +7,13 @@ if [ $# -ne 3 ];then
     exit 1
 fi
 
-set -x
+set -xe
 
 EMAN_REPO_DIR=$1
 OUTPUT_DIR=$2
 CONSTRUCT_YAML_DIR=$3
 
-source activate root
+source ${HOME}/miniconda2/bin/activate root
 
 # Build eman recipe
 conda build ${EMAN_REPO_DIR}/recipes/eman -c cryoem -c defaults -c conda-forge

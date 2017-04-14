@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-bash yum.sh
-bash conda_environment.sh
+bash "${scripts_root_dir}/scripts/yum.sh"
+source "${scripts_root_dir}/scripts/conda_environment.sh"
