@@ -21,8 +21,7 @@ conda build ${EMAN_REPO_DIR}/recipes/eman -c cryoem -c defaults -c conda-forge
 # Package eman
 mkdir -p ${OUTPUT_DIR} && cd ${OUTPUT_DIR}
 
-temp_dir=temp1
-cp -a ${CONSTRUCT_YAML_DIR} ${temp_dir}
-sed -i.bak "s~\(^.*file://\)\(.*$\)~\1${CONDA_PREFIX}/conda-bld/~" ${temp_dir}/construct.yaml
-constructor ${temp_dir}
-rm -rf ${temp_dir}
+CONSTRUCT_YAML="${CONSTRUCT_YAML_DIR}/construct.yaml"
+sed -i.bak "s~\(^.*file://\)\(.*$\)~\1${CONDA_PREFIX}/conda-bld/~" ${CONSTRUCT_YAML}
+constructor ${CONSTRUCT_YAML_DIR}
+mv ${CONSTRUCT_YAML}.bak ${CONSTRUCT_YAML}
