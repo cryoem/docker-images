@@ -15,8 +15,6 @@ scripts_root_dir=$(cd $(dirname $0)/..; pwd -P)
 docker_root_dir="/workspace"
 docker_scripts_root_dir="/scripts_root"
 
-echo ${scripts_root_dir}
-#exit
 
 docker info
 
@@ -26,10 +24,9 @@ docker run -i \
             -a stdin -a stdout -a stderr \
             $docker_image \
             bash << EOF 
+
 set -ex
 export PYTHONUNBUFFERED=1
-#export scripts_root_dir="/scripts_root"
-#echo ${scripts_root_dir}
 
 bash "${docker_scripts_root_dir}"/scripts/dockerfile.sh
 bash "${docker_scripts_root_dir}"/scripts/build_and_package.sh \
