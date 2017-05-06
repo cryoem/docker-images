@@ -22,6 +22,8 @@ cat << EOF | docker run -i \
                         -a stdin -a stdout -a stderr \
                         cryoem/centos6:latest
 
+source activate root
+
 bash /workspace/docker-images/scripts/build_and_package.sh /workspace/eman2-src /workspace/centos6 /workspace/build-scripts-src/constructor
 
 chown -v $HOST_GID:$HOST_UID /workspace/centos6/*
