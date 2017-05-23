@@ -10,6 +10,7 @@ RUN yum update -y && \
                mesa-libGLU-devel \
                gcc \
                gcc-c++ \
+               fontconfig \
                libXext-devel \
                libXrender-devel \
                libSM-devel \
