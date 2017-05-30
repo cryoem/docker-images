@@ -15,7 +15,8 @@ RUN yum update -y && \
                libXext-devel \
                libXrender-devel \
                libSM-devel \
-               libX11-devel && \
+               libX11-devel \
+               fontconfig && \
     yum clean all
 
 RUN curl -v -L -O https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh && \
