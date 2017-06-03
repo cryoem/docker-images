@@ -24,8 +24,11 @@ cat << EOF | docker run -i \
 
 source activate root
 
-bash /workspace/docker-images/scripts/build_and_package.sh /workspace/eman2-src /workspace/centos6 /workspace/build-scripts-src/constructor
+bash /workspace/build-scripts/build_and_package.sh /workspace/eman2-src/recipes/eman /workspace/centos6 /workspace/build-scripts/constructor
 
 chown -v $HOST_GID:$HOST_UID /workspace/centos6/*
+chown -R $HOST_GID:$HOST_UID /root/.conda/*
+chown -R $HOST_GID:$HOST_UID /root/miniconda2/conda-bld/*
+chown -R $HOST_GID:$HOST_UID /root/miniconda2/pkgs/*
 
 EOF
