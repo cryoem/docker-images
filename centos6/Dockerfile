@@ -25,6 +25,7 @@ RUN curl -v -L -O https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x8
     conda config --set show_channel_urls True && \
     conda update --all --yes && \
     conda install constructor conda-build --yes && \
+    conda install cmake=3.8 -c conda-forge --yes && \
     curl -v -L https://github.com/cryoem/constructor/archive/eman.tar.gz -o constructor-eman.tar.gz && \
     tar xzvf constructor-eman.tar.gz && \
     cd constructor-eman/ && \
