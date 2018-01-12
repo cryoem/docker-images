@@ -20,7 +20,7 @@ RUN yum update -y && \
     yum clean all
 
 RUN curl -v -L -O https://repo.continuum.io/miniconda/Miniconda2-4.3.21-Linux-x86_64.sh && \
-    bash Miniconda2-latest-Linux-x86_64.sh -b && \
+    bash Miniconda2-4.3.21-Linux-x86_64.sh -b && \
     source $HOME/miniconda2/bin/activate root && \
     conda config --set show_channel_urls True && \
     conda update --all --yes && \
