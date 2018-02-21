@@ -1,9 +1,9 @@
 FROM cryoem/centos6:base
 
 
-RUN curl -v -L -O https://repo.continuum.io/miniconda/Miniconda2-4.3.21-Linux-x86_64.sh && \
-    bash Miniconda2-4.3.21-Linux-x86_64.sh -b && \
-    source $HOME/miniconda2/bin/activate root && \
+RUN curl -v -L https://repo.continuum.io/miniconda/Miniconda2-4.3.21-Linux-x86_64.sh -o miniconda.sh && \
+    bash miniconda.sh -bp $HOME/miniconda && \
+    source $HOME/miniconda/bin/activate root && \
     conda config --set show_channel_urls True && \
     conda update --all --yes && \
     conda install constructor conda-build=2 --yes && \
@@ -13,7 +13,7 @@ RUN curl -v -L -O https://repo.continuum.io/miniconda/Miniconda2-4.3.21-Linux-x8
     cd constructor-eman/ && \
     python setup.py install
 
-ENV PATH /root/miniconda2/bin:$PATH
+ENV PATH /root/miniconda/bin:$PATH
 ENV PYTHONUNBUFFERED 1
 
 CMD [ "/bin/bash" ]
