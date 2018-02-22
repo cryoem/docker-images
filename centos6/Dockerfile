@@ -16,5 +16,6 @@ RUN yum update -y && \
                libXrender-devel \
                libSM-devel \
                libX11-devel \
-               fontconfig && \
+               fontconfig \
+               git && \
     yum clean all
