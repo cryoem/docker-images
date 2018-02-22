@@ -12,6 +12,7 @@ RUN curl -v -L https://repo.continuum.io/miniconda/Miniconda2-4.3.21-Linux-x86_6
     tar xzvf constructor-eman.tar.gz && \
     cd constructor-eman/ && \
     python setup.py install && \
+    constructor --version && \
     cd .. && \
     rm -rf constructor-eman.tar.gz constructor-eman*/ && \
     conda clean --all --yes
