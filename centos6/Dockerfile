@@ -8,6 +8,7 @@ RUN curl -v -L https://repo.continuum.io/miniconda/Miniconda2-4.3.21-Linux-x86_6
     conda config --set show_channel_urls True && \
     conda install constructor conda-build=2 --yes -q && \
     conda install cmake=3.9 -c defaults --yes -q && \
+    conda install conda=4.3 conda-build=2 -c defaults --yes -q && \ 
     curl -v -L https://github.com/cryoem/constructor/archive/eman/1.5.5.tar.gz -o constructor-eman.tar.gz && \
     tar xzvf constructor-eman.tar.gz && \
     cd constructor-eman-1.5.5/ && \
