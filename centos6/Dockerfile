@@ -17,5 +17,6 @@ RUN yum update -y && \
                libSM-devel \
                libX11-devel \
                fontconfig \
-               git && \
+               git \
+               java && \
     yum clean all
