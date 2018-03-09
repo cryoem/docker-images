@@ -1,4 +1,4 @@
-FROM cryoem/centos6:base-v2
+FROM cryoem/centos6:base
 
 
 RUN curl -v -L https://repo.continuum.io/miniconda/Miniconda2-4.3.21-Linux-x86_64.sh -o miniconda.sh && \
