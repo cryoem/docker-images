@@ -17,6 +17,7 @@ RUN curl -v -L https://repo.continuum.io/miniconda/Miniconda2-4.3.21-Linux-x86_6
     constructor --version && \
     cd .. && \
     rm -rf constructor-eman.tar.gz constructor-eman*/ && \
+    conda create -n eman-deps-9 eman-deps=9 -c cryoem -c defaults -c conda-forge --yes -q && \
     conda clean --all --yes
 
 ENV PATH /root/miniconda/bin:$PATH
