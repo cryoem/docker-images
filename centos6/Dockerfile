@@ -18,6 +18,8 @@ RUN curl -v -L https://repo.continuum.io/miniconda/Miniconda2-4.4.10-Linux-x86_6
     conda create -n eman-deps-9 eman-deps=9 -c cryoem -c defaults -c conda-forge --yes -q && \
     conda create -n eman-deps-9-gui eman-deps=9 -c cryoem -c defaults -c conda-forge --yes -q && \
     conda install -n eman-deps-9-gui pyautogui pytest pytest-qt -c cryoem -c defaults -c conda-forge --yes -q && \
+    conda create -n eman-deps-10 eman-deps=10 -c cryoem -c defaults -c conda-forge --yes -q && \
+    conda create -n eman-deps-11 eman-deps=11 -c cryoem -c defaults -c conda-forge --yes -q && \
     conda clean --all --yes
 
 ENV PATH /root/miniconda/bin:$PATH
