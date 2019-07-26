@@ -6,4 +6,3 @@ embeddable-build-status
 jobConfigHistory
 pipeline-githubnotify-step
 timestamper
-workflow-aggregator
