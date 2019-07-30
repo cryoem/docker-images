@@ -6,3 +6,5 @@ embeddable-build-status
 jobConfigHistory
 pipeline-githubnotify-step
 timestamper
+configuration-as-code
+job-dsl
