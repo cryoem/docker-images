@@ -67,3 +67,28 @@ job('cron-test') {
         }
     }
 }
+
+pipelineJob(downstreamJob) {
+    disabled()
+    
+    properties {
+        githubProjectUrl('https://github.com/cryoem/eman2.git/')
+    }
+    
+    definition {
+        cpsScm {
+            scriptPath('Jenkinsfile')
+            scm {
+                git {
+                    remote { url('https://github.com/cryoem/eman2.git') }
+                    branches('*/*')
+                    extensions {
+                        cleanBeforeCheckout()
+                        pruneBranches()
+                    }
+                }
+            }
+            lightweight()
+        }
+    }
+}
