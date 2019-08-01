@@ -1,0 +1,38 @@
+job('github-triggers-test') {
+    scm {
+        git {
+            remote { url('https://github.com/cryoem/eman2.git') }
+            branches('*/*')
+            extensions {
+                cleanBeforeCheckout()
+                pruneBranches()
+            }
+        }
+    }
+    
+    triggers {
+        githubPush()
+    }
+    
+    steps {
+        downstreamParameterized {
+            trigger('eman-build-test') {
+            parameters {
+                    currentBuild()
+                    gitRevision()
+                }
+            }
+        }
+        
+        gitHubSetCommitStatusBuilder {
+            contextSource {
+                manuallyEnteredCommitContextSource {
+                    context('JenkinsCI')
+                }
+            }
+            statusMessage {
+                content('Waiting...')
+            }
+        }
+    }
+}
