@@ -1,3 +1,5 @@
+def downstreamJob = 'eman-build-test'
+
 job('github-triggers-test') {
     scm {
         git {
@@ -16,7 +18,7 @@ job('github-triggers-test') {
     
     steps {
         downstreamParameterized {
-            trigger('eman-build-test') {
+            trigger(downstreamJob) {
             parameters {
                     currentBuild()
                     gitRevision()
