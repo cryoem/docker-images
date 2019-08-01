@@ -38,3 +38,32 @@ job('github-triggers-test') {
         }
     }
 }
+
+job('cron-test') {
+    disabled()
+    scm {
+        git {
+            remote { url('https://github.com/cryoem/eman2.git') }
+            branches('*/master')
+            extensions {
+                cleanBeforeCheckout()
+                pruneBranches()
+            }
+        }
+    }
+    
+    triggers {
+        cron('TZ=America/Chicago\nH 2 * * *')
+    }
+    
+    steps {
+        downstreamParameterized {
+            trigger(downstreamJob) {
+            parameters {
+                    currentBuild()
+                    gitRevision()
+                }
+            }
+        }
+    }
+}
