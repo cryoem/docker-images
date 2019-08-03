@@ -1,0 +1,27 @@
+version: '3'
+services:
+#  jenkins-slave1:
+#    image: jenkinsci/jnlp-slave
+#    command: -url  http://10.10.9.181:8080 ba7dfc5a9bc31b10385a89b1c72fe3469026d461372754eaa8960b8c1071fe92 jenkins-slave
+##    depends_on:
+##      - jenkins-master
+
+  jenkins-test:
+    build: .
+    image: cryoem/jenkins:dev
+#    user: root
+    #restart: always
+    restart: unless-stopped
+    ports:
+      - 8081:8080
+      - 50000:50000
+#    volumes:
+#      - /usr/bin/docker:/usr/bin/docker
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - /home/eman2/jenkins_home:/var/jenkins_home
+#      - /home/:/home
+#      - /usr/include:/usr/include
+#      - /usr/lib64:/usr/lib64
+    environment:
+      - PLUGINS_FORCE_UPGRADE=true
+      - TRY_UPGRADE_IF_NO_MARKER=true
