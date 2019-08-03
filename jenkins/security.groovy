@@ -6,12 +6,12 @@ import jenkins.install.InstallState
 
 def instance = Jenkins.getInstance()
 
-def jenkins-user = new File("/run/secrets/jenkins-user").text.trim()
-def jenkins-pass = new File("/run/secrets/jenkins-pass").text.trim()
+def jenkins_user = new File("/run/secrets/jenkins_user").text.trim()
+def jenkins_pass = new File("/run/secrets/jenkins_pass").text.trim()
 
 println "--> creating local user 'admin'"
 // Create user with custom pass
-def user = instance.getSecurityRealm().createAccount(jenkins-user, jenkins-pass)
+def user = instance.getSecurityRealm().createAccount(jenkins_user, jenkins_pass)
 user.save()
 
 def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
