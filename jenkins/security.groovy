@@ -6,8 +6,8 @@ import jenkins.install.InstallState
 
 def instance = Jenkins.getInstance()
 
-def jenkins_user = new File("/run/secrets/jenkins_user").text.trim()
-def jenkins_pass = new File("/run/secrets/jenkins_pass").text.trim()
+def jenkins_user = new File("/run/secrets/jenkins-user").text.trim()
+def jenkins_pass = new File("/run/secrets/jenkins-pass").text.trim()
 
 println "--> creating local user 'admin'"
 // Create user with custom pass
