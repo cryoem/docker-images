@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
     ports:
       - 8081:8080
-      - 50000:50000
+#      - 50000:50000
 #    volumes:
 #      - /usr/bin/docker:/usr/bin/docker
 #      - /var/run/docker.sock:/var/run/docker.sock
