@@ -1,4 +1,4 @@
-version: '3'
+version: '3.1'
 services:
 #  jenkins-slave1:
 #    image: jenkinsci/jnlp-slave
