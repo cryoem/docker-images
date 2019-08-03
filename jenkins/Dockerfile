@@ -12,4 +12,3 @@ COPY users.xml.override /usr/share/jenkins/ref/users
 COPY eman2_9006950017624574913/ /usr/share/jenkins/ref/users/eman2_9006950017624574913/
 
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
-
