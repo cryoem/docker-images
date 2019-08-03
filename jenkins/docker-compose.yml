@@ -8,7 +8,7 @@ services:
 
   jenkins-test:
     build: .
-    image: cryoem/jenkins:dev
+    image: jen-dev
 #    user: root
     #restart: always
     restart: unless-stopped
