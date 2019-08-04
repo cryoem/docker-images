@@ -1,0 +1,214 @@
+diff --git a/cron-test/config.xml b/cron-test/config.xml
+index 6ea6e82..2a0b87a 100644
+--- a/cron-test/config.xml
++++ b/cron-test/config.xml
+@@ -1,55 +1,40 @@
+-<?xml version="1.0" encoding="UTF-8"?><project>
+-    <actions/>
+-    <description/>
+-    <keepDependencies>false</keepDependencies>
+-    <properties/>
+-    <canRoam>true</canRoam>
+-    <disabled>true</disabled>
+-    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+-    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+-    <triggers>
+-        <hudson.triggers.TimerTrigger>
+-            <spec>TZ=America/Chicago
++<?xml version='1.1' encoding='UTF-8'?>
++<project>
++  <actions/>
++  <description></description>
++  <keepDependencies>false</keepDependencies>
++  <properties/>
++  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.11.0">
++    <configVersion>2</configVersion>
++    <userRemoteConfigs>
++      <hudson.plugins.git.UserRemoteConfig>
++        <url>https://github.com/cryoem/eman2.git</url>
++      </hudson.plugins.git.UserRemoteConfig>
++    </userRemoteConfigs>
++    <branches>
++      <hudson.plugins.git.BranchSpec>
++        <name>*/master</name>
++      </hudson.plugins.git.BranchSpec>
++    </branches>
++    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
++    <gitTool>Default</gitTool>
++    <extensions>
++      <hudson.plugins.git.extensions.impl.CleanBeforeCheckout/>
++      <hudson.plugins.git.extensions.impl.PruneStaleBranch/>
++    </extensions>
++  </scm>
++  <canRoam>true</canRoam>
++  <disabled>true</disabled>
++  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
++  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
++  <triggers>
++    <hudson.triggers.TimerTrigger>
++      <spec>TZ=America/Chicago
+ H 2 * * *</spec>
+-        </hudson.triggers.TimerTrigger>
+-    </triggers>
+-    <concurrentBuild>false</concurrentBuild>
+-    <builders>
+-        <hudson.plugins.parameterizedtrigger.TriggerBuilder>
+-            <configs>
+-                <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+-                    <projects>eman-build-test</projects>
+-                    <condition>ALWAYS</condition>
+-                    <triggerWithNoParameters>false</triggerWithNoParameters>
+-                    <configs>
+-                        <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+-                        <hudson.plugins.git.GitRevisionBuildParameters>
+-                            <combineQueuedCommits>false</combineQueuedCommits>
+-                        </hudson.plugins.git.GitRevisionBuildParameters>
+-                    </configs>
+-                </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+-            </configs>
+-        </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+-    </builders>
+-    <publishers/>
+-    <buildWrappers/>
+-    <scm class="hudson.plugins.git.GitSCM">
+-        <userRemoteConfigs>
+-            <hudson.plugins.git.UserRemoteConfig>
+-                <url>https://github.com/cryoem/eman2.git</url>
+-            </hudson.plugins.git.UserRemoteConfig>
+-        </userRemoteConfigs>
+-        <branches>
+-            <hudson.plugins.git.BranchSpec>
+-                <name>*/master</name>
+-            </hudson.plugins.git.BranchSpec>
+-        </branches>
+-        <configVersion>2</configVersion>
+-        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+-        <gitTool>Default</gitTool>
+-        <extensions>
+-            <hudson.plugins.git.extensions.impl.CleanBeforeCheckout/>
+-            <hudson.plugins.git.extensions.impl.PruneStaleBranch/>
+-        </extensions>
+-    </scm>
++    </hudson.triggers.TimerTrigger>
++  </triggers>
++  <concurrentBuild>false</concurrentBuild>
++  <builders/>
++  <publishers/>
++  <buildWrappers/>
+ </project>
+\ No newline at end of file
+diff --git a/github-triggers-test/config.xml b/github-triggers-test/config.xml
+index 45e2303..ead47ab 100644
+--- a/github-triggers-test/config.xml
++++ b/github-triggers-test/config.xml
+@@ -1,62 +1,48 @@
+-<?xml version="1.0" encoding="UTF-8"?><project>
+-    <actions/>
+-    <description/>
+-    <keepDependencies>false</keepDependencies>
+-    <properties/>
+-    <canRoam>true</canRoam>
+-    <disabled>false</disabled>
+-    <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+-    <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+-    <triggers>
+-        <com.cloudbees.jenkins.GitHubPushTrigger>
+-            <spec/>
+-        </com.cloudbees.jenkins.GitHubPushTrigger>
+-    </triggers>
+-    <concurrentBuild>false</concurrentBuild>
+-    <builders>
+-        <hudson.plugins.parameterizedtrigger.TriggerBuilder>
+-            <configs>
+-                <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+-                    <projects>eman-build-test</projects>
+-                    <condition>ALWAYS</condition>
+-                    <triggerWithNoParameters>false</triggerWithNoParameters>
+-                    <configs>
+-                        <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+-                        <hudson.plugins.git.GitRevisionBuildParameters>
+-                            <combineQueuedCommits>false</combineQueuedCommits>
+-                        </hudson.plugins.git.GitRevisionBuildParameters>
+-                    </configs>
+-                </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+-            </configs>
+-        </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+-        <com.cloudbees.jenkins.GitHubSetCommitStatusBuilder plugin="github@1.29.4">
+-            <statusMessage>
+-                <content>Waiting...</content>
+-            </statusMessage>
+-            <contextSource class="org.jenkinsci.plugins.github.status.sources.ManuallyEnteredCommitContextSource">
+-                <context>JenkinsCI</context>
+-            </contextSource>
+-        </com.cloudbees.jenkins.GitHubSetCommitStatusBuilder>
+-    </builders>
+-    <publishers/>
+-    <buildWrappers/>
+-    <scm class="hudson.plugins.git.GitSCM">
+-        <userRemoteConfigs>
+-            <hudson.plugins.git.UserRemoteConfig>
+-                <url>https://github.com/cryoem/eman2.git</url>
+-            </hudson.plugins.git.UserRemoteConfig>
+-        </userRemoteConfigs>
+-        <branches>
+-            <hudson.plugins.git.BranchSpec>
+-                <name>*/*</name>
+-            </hudson.plugins.git.BranchSpec>
+-        </branches>
+-        <configVersion>2</configVersion>
+-        <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+-        <gitTool>Default</gitTool>
+-        <extensions>
+-            <hudson.plugins.git.extensions.impl.CleanBeforeCheckout/>
+-            <hudson.plugins.git.extensions.impl.PruneStaleBranch/>
+-        </extensions>
+-    </scm>
++<?xml version='1.1' encoding='UTF-8'?>
++<project>
++  <actions/>
++  <description></description>
++  <keepDependencies>false</keepDependencies>
++  <properties/>
++  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.11.0">
++    <configVersion>2</configVersion>
++    <userRemoteConfigs>
++      <hudson.plugins.git.UserRemoteConfig>
++        <url>https://github.com/cryoem/eman2.git</url>
++      </hudson.plugins.git.UserRemoteConfig>
++    </userRemoteConfigs>
++    <branches>
++      <hudson.plugins.git.BranchSpec>
++        <name>*/*</name>
++      </hudson.plugins.git.BranchSpec>
++    </branches>
++    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
++    <gitTool>Default</gitTool>
++    <extensions>
++      <hudson.plugins.git.extensions.impl.CleanBeforeCheckout/>
++      <hudson.plugins.git.extensions.impl.PruneStaleBranch/>
++    </extensions>
++  </scm>
++  <canRoam>true</canRoam>
++  <disabled>false</disabled>
++  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
++  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
++  <triggers>
++    <com.cloudbees.jenkins.GitHubPushTrigger plugin="github@1.29.4">
++      <spec></spec>
++    </com.cloudbees.jenkins.GitHubPushTrigger>
++  </triggers>
++  <concurrentBuild>false</concurrentBuild>
++  <builders>
++    <com.cloudbees.jenkins.GitHubSetCommitStatusBuilder plugin="github@1.29.4">
++      <statusMessage>
++        <content>Waiting...</content>
++      </statusMessage>
++      <contextSource class="org.jenkinsci.plugins.github.status.sources.ManuallyEnteredCommitContextSource">
++        <context>JenkinsCI</context>
++      </contextSource>
++    </com.cloudbees.jenkins.GitHubSetCommitStatusBuilder>
++  </builders>
++  <publishers/>
++  <buildWrappers/>
+ </project>
+\ No newline at end of file

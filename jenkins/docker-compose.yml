@@ -9,13 +9,14 @@ services:
   jenkins-test:
     build: .
     image: jen-dev
-#    user: root
+    user: root
     #restart: always
     restart: unless-stopped
     ports:
       - 8081:8080
-#      - 50000:50000
-#    volumes:
+      #- 50000:50000
+    volumes:
+      - /home/eman2/workspace/jen-test-home:/var/jenkins_home
 #      - /usr/bin/docker:/usr/bin/docker
 #      - /var/run/docker.sock:/var/run/docker.sock
 #      - /home/eman2/jenkins_home:/var/jenkins_home
