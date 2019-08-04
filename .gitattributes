@@ -1,0 +1,5 @@
+test-encrypt.txt filter=git-crypt diff=git-crypt
+jenkins/users.xml.override filter=git-crypt diff=git-crypt
+jenkins/jenkins.yaml filter=git-crypt diff=git-crypt
+jenkins/eman2_9006950017624574913/config.xml.override filter=git-crypt diff=git-crypt
+.gitattributes !filter !diff
