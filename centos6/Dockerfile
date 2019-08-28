@@ -1,37 +1,28 @@
-FROM centos:6
+FROM cryoem/centos6:base
 
 
-# Set an encoding to make things work smoothly.
-ENV LANG en_US.UTF-8
-
-# Install basic requirements.
-RUN yum update -y && \
-    yum install -y \
-               mesa-libGLU-devel \
-               gcc \
-               gcc-c++ \
-               gcc-gfortran \
-               fontconfig \
-               libXext-devel \
-               libXrender-devel \
-               libSM-devel \
-               libX11-devel \
-               fontconfig && \
-    yum clean all
-
-RUN curl -v -L -O https://repo.continuum.io/miniconda/Miniconda2-4.3.21-Linux-x86_64.sh && \
-    bash Miniconda2-4.3.21-Linux-x86_64.sh -b && \
-    source $HOME/miniconda2/bin/activate root && \
+RUN curl -v -L https://repo.continuum.io/miniconda/Miniconda2-4.4.10-Linux-x86_64.sh -o miniconda.sh && \
+    bash miniconda.sh -bp $HOME/miniconda && \
+    rm miniconda.sh && \
+    source $HOME/miniconda/bin/activate root && \
     conda config --set show_channel_urls True && \
-    conda update --all --yes && \
-    conda install constructor conda-build=2 --yes && \
-    conda install cmake=3.9 -c defaults --yes && \
-    curl -v -L https://github.com/cryoem/constructor/archive/eman.tar.gz -o constructor-eman.tar.gz && \
+    conda install constructor conda-build=3 -c defaults --yes -q && \
+    conda install cmake=3.9 -c defaults --yes -q && \
+    curl -v -L https://github.com/cryoem/constructor/archive/eman/2.0.2.tar.gz -o constructor-eman.tar.gz && \
     tar xzvf constructor-eman.tar.gz && \
-    cd constructor-eman/ && \
-    python setup.py install
+    cd constructor-eman-2.0.2/ && \
+    python setup.py install && \
+    constructor --version && \
+    cd .. && \
+    rm -rf constructor-eman.tar.gz constructor-eman*/ && \
+    conda create -n eman-deps-9 eman-deps=9 -c cryoem -c defaults -c conda-forge --yes -q && \
+    conda create -n eman-deps-9-gui eman-deps=9 -c cryoem -c defaults -c conda-forge --yes -q && \
+    conda install -n eman-deps-9-gui pyautogui pytest pytest-qt -c cryoem -c defaults -c conda-forge --yes -q && \
+    conda create -n eman-deps-10 eman-deps=10 -c cryoem -c defaults -c conda-forge --yes -q && \
+    conda create -n eman-deps-11 eman-deps=11 -c cryoem -c defaults -c conda-forge --yes -q && \
+    conda clean --all --yes
 
-ENV PATH /root/miniconda2/bin:$PATH
+ENV PATH /root/miniconda/bin:$PATH
 ENV PYTHONUNBUFFERED 1
 
 CMD [ "/bin/bash" ]
