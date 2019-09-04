@@ -8,3 +8,5 @@ pipeline-githubnotify-step
 timestamper
 configuration-as-code
 job-dsl
+publish-over-ssh
+file-operations
