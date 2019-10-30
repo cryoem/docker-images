@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:lts-alpine
 
 COPY plugins.txt     /usr/share/jenkins/ref/plugins.txt
 
