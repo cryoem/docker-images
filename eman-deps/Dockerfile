@@ -1,3 +1,6 @@
+FROM circleci/buildpack-deps:16.04
+
+
 RUN sudo apt-get update -y && \
     sudo apt-get upgrade -y && \
     sudo apt-get install freeglut3-dev && \
