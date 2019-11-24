@@ -1,20 +1,8 @@
-FROM circleci/buildpack-deps:18.04
+FROM cryoem/eman-deps:circleci18
 
 
-RUN sudo apt-get update -y && \
-    sudo apt-get upgrade -y && \
-    sudo apt-get install freeglut3-dev && \
-    sudo apt-get autoremove -y && \
-    sudo apt-get clean -y
-    
-RUN cd $HOME && curl -v -L https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -o miniconda.sh && \
-    bash miniconda.sh -bp $HOME/miniconda && \
-    rm miniconda.sh && \
-    . $HOME/miniconda/etc/profile.d/conda.sh && \
-    conda init && \
-    conda config --set show_channel_urls True && \
-    conda config --set auto_update_conda False && \
-    conda install conda=4.6.14 conda-build=3.17.8 -c defaults --yes && \
+RUN . $HOME/miniconda/etc/profile.d/conda.sh && \
+    conda create -n eman-deps-16.0 eman-deps=16.0 boost=1.66 cmake=3.14 -c cryoem -c defaults -c conda-forge --yes && \
     conda clean --all --yes
 
 ENV PYTHONUNBUFFERED 1
