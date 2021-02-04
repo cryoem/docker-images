@@ -8,7 +8,7 @@ RUN sudo apt-get update -y && \
     sudo apt-get autoremove -y && \
     sudo apt-get clean -y
     
-RUN cd $HOME && curl -v -L https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -o miniconda.sh && \
+RUN cd $HOME && curl -v -L https://repo.anaconda.com/miniconda/Miniconda3-py39_4.9.2-Linux-x86_64.sh -o miniconda.sh && \
     bash miniconda.sh -bp $HOME/miniconda && \
     rm miniconda.sh && \
     . $HOME/miniconda/etc/profile.d/conda.sh && \
